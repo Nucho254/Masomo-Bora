@@ -1161,17 +1161,281 @@
    LINKS
 =================================== */
 
-.teach-cont a,
-.stud-cont a {
-    text-decoration: none;
+.teach-cont button,
+.stud-cont button{
     color: var(--navy);
     font-family: var(--body);
+    border: none;
+    background:none;
     font-size: 1.1rem;
     font-weight: 700;
     transition: .3s;
 }
 
-.teach-cont:hover a,
-.stud-cont:hover a {
+.teach-cont:hover button,
+.stud-cont:hover button {
     color: var(--sky);
+}
+
+/* ===========================
+   LOGIN POPUP
+=========================== */
+
+.login-popup {
+
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(15, 34, 71, .65);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+
+/* ===========================
+   LOGIN CARD
+=========================== */
+
+.login-card {
+    width: min(90%, 420px);
+    background: var(--card);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.login-card h2 {
+    font-family: var(--display);
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+.login-card p {
+    text-align: center;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    font-family: var(--body);
+}
+
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+
+    margin-bottom: .5rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-family: var(--body);
+}
+
+.input-group input {
+    padding: .9rem 1rem;
+    border: 2px solid var(--paper-line);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--body);
+    transition: .3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--sky);
+    box-shadow: 0 0 0 4px rgba(79, 168, 218, .15);
+}
+
+
+/* ===========================
+   OPTIONS
+=========================== */
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-family: var(--body);
+    font-size: .9rem;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--ink-soft);
+}
+
+.form-options a {
+    text-decoration: none;
+    color: var(--sky);
+    font-weight: 600;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.login-btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--yellow);
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--body);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-btn:hover {
+    background: var(--yellow-deep);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===========================
+   SIGNUP POPUP
+=========================== */
+
+.signup-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: rgba(15, 34, 71, .65);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+
+/* ===========================
+   SIGNUP CARD
+=========================== */
+
+.signup-card {
+    width: min(100%, 440px);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===========================
+   HEADINGS
+=========================== */
+
+.signup-card h2 {
+    font-family: var(--display);
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: .4rem;
+}
+
+.signup-card p {
+    text-align: center;
+    color: var(--ink-soft);
+    margin-bottom: 1.8rem;
+    font-family: var(--body);
+    line-height: 1.5;
+}
+
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    margin-bottom: .45rem;
+    color: var(--ink);
+    font-weight: 600;
+    font-family: var(--body);
+}
+
+.input-group input {
+    padding: .85rem 1rem;
+    border: 2px solid var(--paper-line);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--body);
+    transition: .25s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--sky);
+    box-shadow: 0 0 0 4px rgba(79, 168, 218, .15);
+}
+
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.signup-btn {
+    width: 100%;
+    margin-top: .5rem;
+    padding: .95rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.signup-btn:hover {
+    background: var(--yellow-deep);
+    transform: translateY(-2px);
+}
+
+
+/* ===========================
+   LOGIN LINK
+=========================== */
+
+.login-link {
+    margin-top: 1.25rem;
+    text-align: center;
+    color: var(--ink-soft);
+    font-family: var(--body);
+}
+
+.login-link a {
+    color: var(--sky);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }
