@@ -25,8 +25,10 @@
       <a href="#testimonials">Testimonials</a>
     </nav>
     <div class="nav-actions">
-      <button id="btn-log" class="btn btn-ghost">Log in</button>
-      <button id="btn-start" class="btn btn-primary">Get Started</button>
+      <button id="btn-log" onclick="displayOptions('login')" class="btn btn-ghost">Log in</button>
+      <button id="btn-start" onclick="displayOptions('signup')" class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
 </header>
 
 <!-- ===================== HERO ===================== -->
@@ -37,11 +39,11 @@
       <h1>Revision that feels like a <em>well-marked</em> exam.</h1>
       <p>Masomo Bora lets teachers set revision papers in minutes and lets students practise, get instant feedback, and walk into exams ready — all from one classroom.</p>
       <div class="hero-cta">
-        <button id="hero-teach-btn" class="btn btn-primary">
+        <button id="teach-btn" onclick="displayForms('teacher', 'login')" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke-linejoin="round"/><path d="M8 9h6M8 13h8M8 17h5"/></svg>
           I'm a Teacher
         </button>
-        <button id="hero-stud-btn" class="btn btn-accent">
+        <button id="stud-btn" onclick="displayForms('student', 'login')" class="btn btn-accent">
           <svg viewBox="0 0 24 24" fill="none" stroke="#16305C" stroke-width="1.8"><path d="M12 14 3 9.5 12 5l9 4.5-9 4.5Z" stroke-linejoin="round"/><path d="M6.5 11.6V16c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-4.4"/></svg>
           I'm a Student
         </button>
@@ -107,8 +109,8 @@
         <p>Join teachers and students already using Masomo Bora to turn revision into something students actually look forward to.</p>
       </div>
       <div class="cta-buttons" id="cta">
-        <button id="cta-teach-btn" class="btn btn-white">Sign Up as Teacher</button>
-        <button id="cta-stud-btn" class="btn btn-outline-white">Sign Up as Student</button>
+        <button id="teach-btn-cta" onclick="displayForms('teacher', 'signup')" class="btn btn-white">Sign Up as Teacher</button>
+        <button id="stud-btn-cta" onclick="displayForms('student', 'signup')" class="btn btn-outline-white">Sign Up as Student</button>
       </div>
     </div>
   </div>
@@ -325,31 +327,33 @@
 </footer>
 
 <!-- ===================== Pop ups ===================== -->
- <section id="popup" class="op-log-pop">
-  <h2 id="popup-title"></h2>
+ <section id="popup" class="op-log-pop" aria-modal="true" role="dialog" aria-labelledby="form-title">
+  <button class="popup-close" type="button" aria-label="Close popup">×</button>
+  <h2 id="form-title"></h2>
   <div class="op-main-cont">
-    <div class="teach-cont">
+    <div class="teach-cont" onclick="handleChoice('teacher')">
       <img src="teacher-img.png" alt="Teacher Image">
-      <button id="teacher-link"></button>
+      <button id="teacher-link" class="popup-btn" type="button" onclick="handleChoice('teacher')"></button>
     </div>
-    <div class="stud-cont">
+    <div class="stud-cont" onclick="handleChoice('student')">
       <img src="student-img.png" alt="Student image">
-      <button id="student-link"></button>
+      <button id="student-link" class="popup-btn" type="button" onclick="handleChoice('student')"></button>
     </div>
   </div>
  </section>
 
  <!-- ===================== log in form ===================== -->
- <section id="Login-form" class="login-popup">
+ <section id="Login-form" class="login-popup" aria-modal="true" role="dialog" aria-labelledby="login-title">
     <div class="login-card">
+        <button class="popup-close" type="button" aria-label="Close login popup">×</button>
         <h2 id="login-title"></h2>
-        <p id="teacher-login-text"></p>
+        <p id="login-text"></p>
         <form>
             <div class="input-group">
-                <label for="email">Email</label>
+                <label for="login-email">Email</label>
                 <input
                     type="email"
-                    id="email"
+                    id="login-email"
                     placeholder="Enter your email"
                     required
                 >
@@ -375,13 +379,18 @@
             <button type="submit" class="login-btn">
                 Log In
             </button>
+            <p class="auth-switch">
+                New here?
+                <a href="#" onclick="event.preventDefault(); switchAuthForm('signup')">Create an account</a>
+            </p>
         </form>
     </div>
 </section>
 
  <!-- ===================== sign up in form ===================== -->
-<section id="sign-up-form" class="signup-popup">
+<section id="sign-up-form" class="signup-popup" aria-modal="true" role="dialog" aria-labelledby="signup-tittle">
     <div class="signup-card">
+        <button class="popup-close" type="button" aria-label="Close signup popup">×</button>
         <h2 id="signup-tittle"></h2>
         <p id="signup-text"></p>
 
@@ -397,10 +406,10 @@
             </div>
 
             <div class="input-group">
-                <label for="email">Email Address</label>
+                <label for="signup-email">Email Address</label>
                 <input
                     type="email"
-                    id="email"
+                    id="signup-email"
                     placeholder="Enter your email"
                     required
                 >
@@ -430,7 +439,7 @@
             </button>
             <p class="login-link">
                 Already have an account?
-                <a href="#">Log In</a>
+                <a href="#" onclick="event.preventDefault(); switchAuthForm('login')">Log In</a>
             </p>
         </form>
     </div>

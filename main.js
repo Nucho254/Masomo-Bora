@@ -1,75 +1,133 @@
-//user onboarding popups
+// popups data
 
-// Teacher or student option pop up
-const logIn = document.getElementById("btn-log")
-const popUp = document.getElementById("popup")
-const closePopUp = document.querySelector(".op-log-pop")
-const getStarted = document.getElementById("btn-start")
-const popUpTitle = document.getElementById('popup-title')
-const teacherLink = document.getElementById('teacher-link')
-const studentLink = document.getElementById('student-link')
-
-
-document.addEventListener("click", (event) => {
-    if (event.target === logIn)
-    {
-        popUp.style.display = "flex"
-        popUpTitle.textContent = "Choose Your Account"
-        teacherLink.textContent = "Log in as teacher"
-        studentLink.textContent = "Log in as student"
+const PopUpsData = {
+    signUpForm: {
+        Teacher: {
+            title: "Create Your Teacher Account",
+            text: "Start creating engaging revision questions, organize your classes, and help your students succeed."
+        },
+        Student: {
+            title: "Start Your Revision Journey",
+            text: "Create your free account to access revision questions, monitor your progress, and prepare with confidence."
+        }
+    },
+    logInForm: {
+        Teacher: {
+            title: "Ready to Teach?",
+            text: "Log in to manage your classes and create revision questions in minutes."
+        },
+        student: {
+            title: "Ready to Revise?",
+            text: "Log in to practice questions and stay prepared for every exam."
+        }
+    },
+    logOptions: {
+        GetStarted: {
+            tittle: "Who Are You?",
+            teacher: "A Teacher",
+            student: "A Student"
+        },
+        LogIn: {
+            title: "Choose Your Account",
+            teacher: "Log in as teacher",
+            Student: "Log in as student"
+        }
     }
-    else if(event.target === getStarted)
-    {
-        popUp.style.display = "flex"
-        popUpTitle.textContent = "Who Are You"
-        teacherLink.textContent = "A Teacher"
-        studentLink.textContent = "A Student"
-    }
-    else if(event.target === closePopUp)
-    {
-        popUp.style.display = "none"
-    }
-})
+};
 
-// Log in or Sign up popup
+let activePopupMode = "login";
+let activeRole = "teacher";
 
-const heroTeachBtn = document.getElementById("hero-teach-btn")
-const heroStudBtn = document.getElementById("hero-stud-btn")
-const ctaTeachBtn = document.getElementById("cta-teach-btn")
-const ctaStudBtn = document.getElementById("cta-stud-btn")
-const logInForm = document.getElementById("Login-form")
-const signUpForm = document.getElementById("sign-up-form")
-const signTitle = document.getElementById("signup-tittle")
-const signText = document.getElementById("signup-text")
-const logTitle = document.getElementById("login-title")
-const logText = document.getElementById("teacher-login-text")
+function closeAllPopups() {
+    document.querySelectorAll(".op-log-pop, .login-popup, .signup-popup").forEach((popup) => {
+        popup.classList.remove("show");
+    });
+}
 
-document.addEventListener("click", (event) => {
-    if(event.target === heroTeachBtn)
-    {
-        logInForm.style.display = "flex"
-        logTitle.textContent = "Class Awaits!"
-        logText.textContent = "Log in to see your classes"
-    }
+function openPopup(popup) {
+    closeAllPopups();
+    popup.classList.add("show");
+}
 
-    if(event.target === heroStudBtn)
-    {
-        logInForm.style.display = "flex"
-        logTitle.textContent = "Start Revising Now"
-        logText.textContent = "Log in to see your revision questions"
-    }
+function displayForms(role, formType) {
+    activeRole = role;
+    activePopupMode = formType;
 
-    if(event.target === ctaTeachBtn)
-    {
-        signUpForm.style.display = "flex"
-        signTitle.textContent = "Make Revision Easy"
-        signText.textContent = "Sign up, to save time on your revision"
+    const popup = document.getElementById(formType === "login" ? "Login-form" : "sign-up-form");
+    const title = document.getElementById(formType === "login" ? "login-title" : "signup-tittle");
+    const text = document.getElementById(formType === "login" ? "login-text" : "signup-text");
+
+    if (!popup || !title || !text) return;
+
+    if (formType === "login") {
+        if (role === "teacher") {
+            title.textContent = PopUpsData.logInForm.Teacher.title;
+            text.textContent = PopUpsData.logInForm.Teacher.text;
+        } else {
+            title.textContent = PopUpsData.logInForm.student.title;
+            text.textContent = PopUpsData.logInForm.student.text;
+        }
+    } else {
+        if (role === "teacher") {
+            title.textContent = PopUpsData.signUpForm.Teacher.title;
+            text.textContent = PopUpsData.signUpForm.Teacher.text;
+        } else {
+            title.textContent = PopUpsData.signUpForm.Student.title;
+            text.textContent = PopUpsData.signUpForm.Student.text;
+        }
     }
 
-    if(event.target === ctaStudBtn)
-    {
-        signUpForm.style.display = "flex"
-        signTitle.textContent = "Revision made easy"
-        signText.textContent = "Sign up, to access revision questions"
+    openPopup(popup);
+}
+
+function displayOptions(mode) {
+    activePopupMode = mode;
+
+    const popup = document.getElementById("popup");
+    const title = document.getElementById("form-title");
+    const teacher = document.getElementById("teacher-link");
+    const student = document.getElementById("student-link");
+
+    if (!popup || !title || !teacher || !student) return;
+
+    if (mode === "login") {
+        title.textContent = PopUpsData.logOptions.LogIn.title;
+        teacher.textContent = PopUpsData.logOptions.LogIn.teacher;
+        student.textContent = PopUpsData.logOptions.LogIn.Student;
+    } else {
+        title.textContent = PopUpsData.logOptions.GetStarted.tittle;
+        teacher.textContent = PopUpsData.logOptions.GetStarted.teacher;
+        student.textContent = PopUpsData.logOptions.GetStarted.student;
     }
-})
+
+    openPopup(popup);
+}
+
+function handleChoice(role) {
+    displayForms(role, activePopupMode);
+}
+
+function switchAuthForm(formType) {
+    displayForms(activeRole, formType);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".popup-close").forEach((button) => {
+        button.addEventListener("click", closeAllPopups);
+    });
+
+    document.querySelectorAll(".op-log-pop, .login-popup, .signup-popup").forEach((popup) => {
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                closeAllPopups();
+            }
+        });
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeAllPopups();
+        }
+    });
+});
+
