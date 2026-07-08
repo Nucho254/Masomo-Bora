@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- Main landing page for Masomo Bora -->
 <!-- ===================== NAVBAR ===================== -->
 <header class="navbar">
   <div class="nav-inner container">
@@ -326,8 +327,8 @@
   </div>
 </footer>
 
-<!-- ===================== Pop ups ===================== -->
- <section id="popup" class="op-log-pop" aria-modal="true" role="dialog" aria-labelledby="form-title">
+<!-- ===================== AUTHENTICATION POPUPS ===================== -->
+<section id="popup" class="op-log-pop" aria-modal="true" role="dialog" aria-labelledby="form-title">
   <button class="popup-close" type="button" aria-label="Close popup">×</button>
   <h2 id="form-title"></h2>
   <div class="op-main-cont">
@@ -394,12 +395,13 @@
         <h2 id="signup-tittle"></h2>
         <p id="signup-text"></p>
 
-        <form>
+        <form id="form">
             <div class="input-group">
                 <label for="fullname">Full Name</label>
                 <input
                     type="text"
                     id="fullname"
+                    name="fullname"
                     placeholder="Enter your full name"
                     required
                 >
@@ -410,6 +412,7 @@
                 <input
                     type="email"
                     id="signup-email"
+                    name="email"
                     placeholder="Enter your email"
                     required
                 >
@@ -420,6 +423,7 @@
                 <input
                     type="password"
                     id="password"
+                    name="password"
                     placeholder="Create a password"
                     required
                 >
@@ -430,11 +434,12 @@
                 <input
                     type="password"
                     id="confirm-password"
+                    name="confirm-password"
                     placeholder="Confirm your password"
                     required
                 >
             </div>
-            <button type="submit" class="signup-btn">
+            <button type="submit" class="signup-btn" id="sign-btn">
                 Create Account
             </button>
             <p class="login-link">
@@ -445,7 +450,8 @@
     </div>
 </section>
 
- <script type="module" src="js/main.js"></script>
+<!-- App entry point -->
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
 

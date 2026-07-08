@@ -1,3 +1,4 @@
+  /* Theme variables and global defaults */
   :root {
       --navy: #16305C;
       --navy-deep: #0F2247;
@@ -81,6 +82,7 @@
       border-radius: 4px;
   }
 
+  /* Shared layout container */
   .container {
       width: 100%;
       max-width: 1200px;
@@ -213,7 +215,7 @@
   }
 
   /* ---------------------------------------------------
-     NAVBAR
+     NAVIGATION AND HERO STYLING
   --------------------------------------------------- */
   .navbar {
       position: sticky;

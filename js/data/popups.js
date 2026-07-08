@@ -1,5 +1,4 @@
-// popups data
-
+// Shared copy for the authentication popup content.
 export const PopUpsData = {
     signUpForm: {
         Teacher: {

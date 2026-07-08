@@ -1,8 +1,10 @@
+// handles displaying of popups, and navigation from one popup to the other
 import { PopUpsData } from '../data/popups.js'
 
 let activePopupMode = "login";
 let activeRole = "teacher";
 
+//opening and closing popups functions
 function closeAllPopups() {
     document.querySelectorAll(".op-log-pop, .login-popup, .signup-popup").forEach((popup) => {
         popup.classList.remove("show");
@@ -14,6 +16,7 @@ function openPopup(popup) {
     popup.classList.add("show");
 }
 
+//displaying forms
 function displayForms(role, formType) {
     activeRole = role;
     activePopupMode = formType;
@@ -45,6 +48,7 @@ function displayForms(role, formType) {
     openPopup(popup);
 }
 
+// display log in or sign up options
 function displayOptions(mode) {
     activePopupMode = mode;
 
@@ -76,6 +80,7 @@ function switchAuthForm(formType) {
     displayForms(activeRole, formType);
 }
 
+// Expose the popup handlers globally so the inline HTML buttons can call them.
 globalThis.displayForms = displayForms;
 globalThis.displayOptions = displayOptions;
 globalThis.handleChoice = handleChoice;
@@ -83,7 +88,7 @@ globalThis.switchAuthForm = switchAuthForm;
 globalThis.closeAllPopups = closeAllPopups;
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".popup-close").forEach((button) => {
+    document.querySelectorAll(".popup-close").forEach((button) => {        //close all popups, once the page has fully loaded
         button.addEventListener("click", closeAllPopups);
     });
 
